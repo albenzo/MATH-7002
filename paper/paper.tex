@@ -1,0 +1,66 @@
+%% Revised 11/12/05.
+%% Notice that anything written on a line that begins 
+%% with  a % sign is ignored by LaTeX.
+\documentclass[12pt]{amsart}
+
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{noname}[theorem]{}
+\newtheorem{sublemma}{}[theorem]
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title{Colorings of Knots}
+
+
+\author{Lucas Meyers}
+\address{Mathematics Department\\
+Louisiana State University\\
+Baton Rouge, Louisiana}
+\email{lmeye22@lsu.edu}
+
+\date{\today}
+
+\begin{abstract}
+  Empty
+\end{abstract}
+
+
+
+\maketitle
+
+\section{Introduction}
+\label{introduction}
+
+\textbf{Citation Usage EX}~\cite[Problem 2.4.6]{jpsk}
+
+\section*{Acknowledgements}
+\begin{thebibliography}{99}
+
+\bibitem{jpsk} Kung, J.P.S., Critical problems, in {\em Matroid  
+Theory} (eds. J. E. Bonin, J.G. Oxley, and B. Servatius), {\em  
+Contemporary Mathematics} {\bf 197}, Amer. Math. Soc., Providence,  
+1996, pp. 1--127.
+
+\end{thebibliography}
+
+\end{document}
+
+
