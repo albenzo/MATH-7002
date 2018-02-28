@@ -25,6 +25,8 @@
 
 \numberwithin{equation}{section}
 
+\newcommand{\bb}[1]{\mathbb{#1}}
+
 \begin{document}
 
 \title{Colorings of Knots}
@@ -49,17 +51,47 @@ Baton Rouge, Louisiana}
 \section{Introduction}
 \label{introduction}
 
-\textbf{Citation Usage EX}~\cite[Problem 2.4.6]{jpsk}
-
 \section{Diagrams and Coloring}
 \label{sec:diagrams-coloring}
 
 \section{The Knot Group and $D_6$}
 \label{sec:knot-group-d_6}
 
+
+
 \section{$n$-colorings}
 \label{sec:n-colorings}
 
+Prior to this point we have talked about tricolourings
+of knots. However there is a natural way to extend
+our notion of colouring so that we may work with $n$
+colors as opposed to limiting ourself to 3.
+
+When it came to tricolouring knots we assigned arcs
+either blue, red, or green. However we could just as
+easily assigned numbers 0,1, or 2 to arcs and had
+our condition instead be that if we have a crossing
+as in figure
+
+\textbf{Need a crossing}
+
+That the equation $2x-y-z\equiv 0 \mod p$. We restrict
+ourselves to odd primes for technical reasons.
+Then a knot $K$ is $p$-colourable if we can assign
+a value between $0$ and $p-1$ to each arc in such a
+way that each crossing satisfies the above equation and
+at least two different colors are used.
+
+The proof that this is an invariant is precisely the same
+as it is for showing that tricolourability is an invariant.
+
+The extension of the Knot group definition of colouring is
+even faster to extend. Let $G:=\pi_1(\bb{R}^3\setminus K,*)$. Then we
+define an $n$-colouring of $K$ as a representation
+$\rho$ of $G$ into the dihedral group $D_{2n}$. As before this
+is clearly a knot invariant as there is no mention of a diagram.
+Moreover the proof that the representations of $G$ in $D_{2n}$
+correspond to colorings of diagrams follows similarly.
 
 \section*{Acknowledgements}
 \begin{thebibliography}{99}
