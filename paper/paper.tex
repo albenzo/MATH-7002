@@ -25,9 +25,11 @@
 
 \numberwithin{equation}{section}
 
+\newcommand{\bb}[1]{\mathbb{#1}}
+
 \begin{document}
 
-\title{Colorings of Knots}
+\title{TriColorings of Knots}
 
 
 \author{Lucas Meyers}
@@ -54,12 +56,181 @@ Baton Rouge, Louisiana}
 \section{Diagrams and Coloring}
 \label{sec:diagrams-coloring}
 
-\section{The Knot Group and $D_6$}
+\section{The Knot Group}
 \label{sec:knot-group-d_6}
 
-\section{$n$-colorings}
-\label{sec:n-colorings}
+The definition of 3-coloring is a perfectly valid definition for a knot
+invariant. However it is defined in terms of diagrams and as such
+we had to do some extra work with the Reidmeister moves to show that it
+was indeed an invariant. Ideally there would be an equivalent definition
+of coloring that does not involve diagrams. Then the fact that it is
+an invariant would be immediate and it may be possible to better tease
+out the topological property that is being captured by 3-coloring.
 
+It turns out that there is a way to define 3-coloring in this manner
+and it has to do with a construction called the Knot group. Ones first
+instinct to get a group out of a knot might be to take the fundamental
+group. However since all knots are copies of $S^1$ the fundamental group
+for any knot is $\bb{Z}$. As such we have to take advantage of its
+ambient space.
+
+\begin{definition}[Knot Group]
+  Let $K$ be a knot. Then the Knot group of $K$ is the fundamental
+  group $\pi_1(S^3\setminus K,*)$.
+\end{definition}
+
+This definition makes use of the embedding of the knot into $S^3$ and
+as such will not be identical for all knots. Naturally we need a way
+to calculate the knot group. We can do this using what is called
+the Wirtinger presentation~\cite{hatcher}.
+
+\begin{theorem}[Wirtinger]
+  Let $K$ be a knot and $D$ a diagram for $K$. Choose an
+  orientation for $D$. Then let $x_1,\ldots,x_n$
+  denote the arcs of $D$ and for each crossing give a relation
+  $r_1\ldots, r_m$ such that $r_i \equiv (x_ix_jx_i^{-1}=x_k)$ where $x_i$ is
+  the top arc of the crossing and $x_j$ is the arc underneath approaching
+  $x_k$. Then the knot group of $K$ has the presentation
+  \[
+    \pi_1(S^3\setminus K,*)\cong \langle x_1,\ldots, x_n| \rangle
+  \]
+\end{theorem}
+
+Now we give a couple of examples.
+
+\begin{example}
+  The Knot group of the unknot is
+  \[
+    \langle x_1 |\rangle \cong \bb{Z}
+  \]
+  as there are no crossings and only a single arc.
+\end{example}
+
+Followed by the trefoil knot.
+
+\begin{example}
+  The trefoil knot has three crossings and three arcs. Label it as
+  shown in figure~\ref{fig:AnnTref}. Then the Wirtinger presentation
+  of the knot group of the trefoil is
+  \[
+    \langle x_1,x_2,x_3|x_1x_2x_1^{-1}=x_3,x_3x_1x_3^{-1}=x_2,x_2x_3x_2^{-1}=x_1\rangle
+  \]
+  However the presentation of this group can be simplified to the
+  form
+  \[
+    \langle x_1,x_1| x_1x_2x_1=x_2x_1x_2\rangle
+  \]
+\end{example}
+
+\begin{figure}
+  \caption{Annotated Trefoil}
+  \label{fig:AnnTref}
+\end{figure}
+
+The knot group gives us another invariant of knots. Unfortunately
+presentations of groups can be rather difficult to work with.
+Thus in order to make the problem more tractable we instead look
+at homomorphisms from the knot group to finite groups as these
+will be determined by where we send generators. This is
+how we will redefine coloring in terms of the knot group~\cite{quickfox}.
+
+\begin{definition}[Fox 3-coloring]
+  Let $K$ be a knot and $G$ the corresponding knot group. Then a
+  Fox 3-coloring of $K$ is a homomorphism $\rho$ from
+  $G$ to the symmetries of a triangle $D_6$. We say that
+  $\rho$ is a non-trivial coloring if $\rho$ is surjective.
+
+  Thus a knot $K$ is Fox 3-colorable if there exists a nontrivial
+  Fox 3-coloring.
+\end{definition}
+
+Now a couple of examples using our prior work.
+
+\begin{example}
+  The knot group of the unknot is $\bb{Z}$. Since
+  $\bb{Z}$ has only a single generator it is not possible to
+  create a surjective homomorphism onto $D_6$ as $D_6$ has
+  two generators.
+\end{example}
+
+\begin{example}
+  As we calculated above the knot group for the trefoil is
+  \[
+    \langle x_1,x_2| x_1x_2x_1=x_2x_1x_2\rangle
+  \]
+  Similarly we can write a presentation of $D_6$ as
+  \[
+    \langle r,s| r^3=1, s^2=1,srsr=1\rangle
+  \]
+  This gives us two non-trivial Fox 3-colorings of the trefoil.
+  The first sends $x_1$ to $r$ and $x_2$ to $s$ and the
+  other swaps which generator is sent to which generator.
+\end{example}
+
+As was implied by the prior examples there is a relation between
+Fox 3-coloring and the 3-colorability of knots. In fact it turns
+out that they are exactly the same.
+
+\begin{theorem}
+  A knot $K$ has a 3-coloring if and only if there is a
+  Fox 3-coloring of $K$.
+\end{theorem}
+
+A proof of this theorem can be found within~\cite{medwid}. 
+The proof that is done relates two notions of coloring using
+the Wirtinger presentation to marry the conditions necessary
+for the existence of a 3-coloring and the existence of a Fox
+3-coloring.
+
+\section{n-coloring}
+\label{sec:n-coloring}
+
+So what are the benefits of looking at 3-coloring through
+the lens of Fox 3-coloring? As we mentioned before it is
+immediately clear that this is a knot invariant where as
+when we defined 3-coloring with diagrams. Another benefit
+is that it is more readily apparent how we can further
+extend Fox 3-coloring than extending 3-coloring. From
+the definition of 3-coloring there is some ambiguity that
+would need to be sorted out about precisely what rules need
+to change. Questions such as ``How many colors are necessary?''
+or ``What would make a crossing valid configuration?''.
+
+This is avoided with Fox 3-coloring. The only choice we made
+was that we are looking at homomorphisms to $D_6$. We could
+very easily have chosen any finite group and gotten the
+same nice structure that we had above. The reason that
+$D_6$ is the group used for Fox 3-coloring is that it is
+the group of symmetries of the triangle. We can
+define the Fox $n$-coloring similarly.
+
+\begin{definition}[Fox $n$-coloring]
+  Let $G$ be the knot group of a knot $K$. Then
+  an $n$-coloring of $K$ is a homomorphism $\rho: G\rightarrow D_{2n}$
+  where $\rho$ is called a non-trivial $n$-coloring if $\rho$ is
+  surjective.
+\end{definition}
+
+We can also extend the notion of coloring that we started
+with. However it does take more work. Instead of choosing
+the colors that we did when originally defining 3-coloring
+we could just as easily have used numbers instead. Then
+instead of requiring that each crossing either use all three
+colors or all the same it would be equivalent to each
+crossing satisfying the equation
+\[
+  2x-y-z\equiv 0 \mod 3
+\]
+where the arcs of the crossing are labeled as in figure~\ref{fig:numcolor}
+
+\begin{figure}
+  
+  \caption{Colored Crossing}
+  \label{fig:numcolor}
+\end{figure}
+
+In this form it is more apparent how we could extend 3-coloring
+to arbitrary $n$
 
 \section*{Acknowledgements}
 \begin{thebibliography}{99}
@@ -69,8 +240,12 @@ Theory} (eds. J. E. Bonin, J.G. Oxley, and B. Servatius), {\em
 Contemporary Mathematics} {\bf 197}, Amer. Math. Soc., Providence,  
 1996, pp. 1--127.
 
+\bibitem{hatcher}
+
+\bibitem{quickfox}
+
+\bibitem{medwid}
+
 \end{thebibliography}
 
 \end{document}
-
-
