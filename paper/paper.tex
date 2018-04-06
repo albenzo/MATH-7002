@@ -1,12 +1,12 @@
-%% Revised 11/12/05.
-%% Notice that anything written on a line that begins 
-%% with  a % sign is ignored by LaTeX.
 \documentclass[12pt]{amsart}
 
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{graphicx}
+
+\graphicspath{{images/}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -26,6 +26,7 @@
 \numberwithin{equation}{section}
 
 \newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\ds}{.3}
 
 \begin{document}
 
@@ -41,20 +42,219 @@ Baton Rouge, Louisiana}
 \date{\today}
 
 \begin{abstract}
-  Empty
+  Tricoloring is a knot invariant that differentiates knots
+  based on whether or knot their diagram can be colored in a
+  certain way with 3 colors. In this paper we introduce knots
+  and define Tricolorability in terms of both knot diagrams
+  and the knot group. We then briefly mention extensions
+  of the notions of tricolorability to arbitrary $n$-coloring.
 \end{abstract}
 
-
-
 \maketitle
+\textbf{TODO}:
+\begin{enumerate}
+\item Remove \textbf{TODO}
+\item Iron out figure/image placement before final edition. Too early
+  now. Wait till revision is done.
+\end{enumerate}
 
 \section{Introduction}
 \label{introduction}
 
-\textbf{Citation Usage EX}~\cite[Problem 2.4.6]{jpsk}
+One common pattern we see in mathematics is a concern with how
+certain objects fit inside other objects. Knot theory studies this
+sort of problem. Given a circle $S^1$ what different ways can we embed
+it into $\bb{R}^3$ or $\bb{R}^3$  with an additional point at infinity ($S^3$)?
+A typical drawing of a knot can be seen in figure~\ref{fig:figure-eight}.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{figure-eight}
+  \caption{Figure-eight Knot}
+  \label{fig:figure-eight}
+\end{figure}
+
+Naturally once we begin to consider knots we are also led to consider
+how we might tell them apart or rather when they should be the same
+at all. Intuitively the knot in figure~\ref{fig:figure-eight} should
+be considered the same as in~\ref{fig:figure-eight-t} but should be
+different than that of trefoil seen in figure~\ref{fig:trefoil}. In
+the next section we will see the definition of a knot, how to define their
+equivalence in a sensible way, followed by a method to differentiate them
+called tricolorability. Afterwards we will look at an alternative definition
+of tricolorability. Then we will introduce notions of how one may consider
+coloring knots with more than 3-colors.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{figure-eight-t}
+  \caption{Figure-eight with a twist}
+  \label{fig:figure-eight-t}
+\end{figure}
 
 \section{Diagrams and Coloring}
 \label{sec:diagrams-coloring}
+
+In this paper we will follow the conventions of Charles
+Livingston~\cite{Livingston}. To begin we give the definition of a knot.
+
+\begin{definition}[Knot]
+  A Knot is a simple closed curve in $\bb{R}^3$(or $S^3$).
+\end{definition}
+
+Now there are two issues that we need to consider before moving forward.
+The first is our notion of equivalence. Unfortunately a homeomorphism from
+one knot to another is too weak a notion of equivalence. Instead we will
+use an equivalence called ambient isotopy.
+
+\begin{definition}[Ambient Isotopy]
+  Two knots $K,J$ are ambient isotopic if there is a homotopy on the ambient
+  space $H:S^3\times [0,1]\rightarrow S^3$ if $H(x,0)$ is the identity and the
+  image $H(K,1)=J$.
+\end{definition}
+
+Second is that we will be considering a subset of knots called tame. A knot
+is tame it is ambient isotopic to a piecewise linear knot. An example of
+a knot that is not tame is called wild and an example drawing of such can be
+seen in figure~\ref{fig:wild}. Wild knots have some more ``pathological''
+properties and in order to keep things simple and consistent.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{wild}
+  \caption{Wild Knot}
+  \label{fig:wild}
+\end{figure}
+
+When we give the initial definition of  tricolorability we will not work
+directly with the curves themselves. Instead we will deal with diagrams
+of the knots. All drawings of knots in this paper are examples of diagrams.
+
+\begin{definition}[Diagram]
+  A diagram $D$ for a knot $K$ is a projection of $K$ down to a 2-plane
+  such that no three points are sent to the same place nor do any two
+  points that are kinks in $K$.
+\end{definition}
+
+There is a loss of information that occurs when projecting down to a 2-plane
+and we recover this by taking any intersection and denoting which strand
+goes above and which strand goes below. The segments that make up the
+diagram are called arcs.
+
+There is one other unfortunate occurrence
+from moving to diagrams. It is that there are infinitely many diagrams
+for a given knot. Moreover actually telling whether to diagrams denote
+the same knot is extremely difficult although it is decidable and moreover
+belongs to NP~\cite{Poonen}.
+
+It turns out that there are three ``moves'' along with planar isotopy
+that we can apply to diagrams that will remedy this.
+
+\begin{definition}[Reidmeister Moves]
+  The Reidmeister moves are the moves labeled in figure~\ref{fig:reidmeister}.
+  We will refer to them as type I, type II, or type III moves respectively.
+
+  \begin{figure}
+    \includegraphics[scale=\ds]{reidmeister}
+    \caption{Reidmeister moves}
+    \label{fig:reidmeister}
+  \end{figure}
+\end{definition}
+
+We will use the following theorem about Reidmeister moves without proof.
+
+\begin{theorem}
+  Two knots $K$ and $J$ are ambient isotopic if and only if their diagrams
+  are related by a finite sequence of Reidmeister moves and planar isotopy.
+\end{theorem}
+
+This is where the importance of Reidmeister moves and diagrams becomes apparent
+in defining invariants of knots. If we define an invariant on diagrams and show
+that it does not change under planar isotopy or the Reidmeister moves then
+it will also act as an invariant on knots. This is precisely the method we
+will use with our initial definition of tricolorability.
+
+Now there are two knots that we will return to over an over again in this paper
+as they are the simplest examples of knots for which tricolorability
+differentiates them. The simplest knot is the unknot~\ref{fig:unknot} which
+is unique in that it has a diagram with no crossings whatsoever. The
+other is the trefoil~\ref{fig:trefoil}.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{unknot}
+  \caption{Unknot}
+  \label{fig:unknot}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=\ds]{trefoil}
+  \caption{Trefoil Knot}
+  \label{fig:trefoil}
+\end{figure}
+
+With that in mind let us introduce tricolorability.
+
+\begin{definition}
+  Let $K$ be a knot with diagram $D$. Then a tricoloring (3-coloring)
+  of $K$ is an assignment to each arc one of three colors
+  such that at each crossing either all colors or
+  only single color color appear. A tricoloring is called nontrivial
+  if at least 2 colors are used.
+\end{definition}
+
+We will use the colors red, green, and blue as our colors.
+Now we must show that tricoloring is in fact an invariant.
+
+\begin{theorem}
+  The existence of a non-trivial 3-coloring for some diagram is a
+  knot invariant.
+\end{theorem}
+
+\begin{proof}
+  Let $K$ be a knot with diagram $D$. We must show that given a coloring
+  for $D$ that we can color any diagram of $K$. First note that planar isotopy
+  does not affect the crossings for $D$ and as such does not change the
+  3-colorability.
+
+  Next we will have a series of pictures that demonstrate the possibilities
+  for Type I, Type II, and Type III moves respectively.
+
+  For type I we have:
+  \begin{figure}
+    \includegraphics[scale=\ds]{t1-c}
+    \caption{Type I}
+    \label{fig:t1-c}
+  \end{figure}
+  
+  For type II there are two cases either both strands have the same color
+  or they are different.
+  \begin{figure}
+    \includegraphics[scale=\ds]{t2-c}
+    \caption{Type II}
+    \label{fig:t2-c}
+  \end{figure}
+
+  Finally for type III moves there are several cases based on
+  the colors of the strands entering. We will demonstrate
+  three such cases and the rest are similar.
+  \begin{figure}
+    \includegraphics[scale=\ds]{t3-c}
+    \caption{Type III}
+    \label{fig:t3-c}
+  \end{figure}
+
+  Thus if a diagram $D$ for a knot $K$ is has a 3-coloring then
+  any diagram for $K$ has a 3-coloring. Therefore 3-colorability
+  is a knot invariant.
+\end{proof}
+
+An immediate consequence of this is that the unknot and the trefoil
+knot are in fact not identical. We can see this because the unknot
+is not tricolorable as it only has a single arc. However the
+trefoil can be colored as in figure~\ref{fig:trefoil-c}.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{trefoil-c}
+  \caption{Colored trefoil}
+  \label{fig:trefoil-c}
+\end{figure}
 
 \section{The Knot Group}
 \label{sec:knot-group-d_6}
@@ -110,7 +310,7 @@ Followed by the trefoil knot.
 
 \begin{example}
   The trefoil knot has three crossings and three arcs. Label it as
-  shown in figure~\ref{fig:AnnTref}. Then the Wirtinger presentation
+  shown in figure~\ref{fig:annotated-trefoil}. Then the Wirtinger presentation
   of the knot group of the trefoil is
   \[
     \langle x_1,x_2,x_3|x_1x_2x_1^{-1}=x_3,x_3x_1x_3^{-1}=x_2,x_2x_3x_2^{-1}=x_1\rangle
@@ -123,8 +323,9 @@ Followed by the trefoil knot.
 \end{example}
 
 \begin{figure}
+  \includegraphics[scale=\ds]{annotated-trefoil}
   \caption{Annotated Trefoil}
-  \label{fig:AnnTref}
+  \label{fig:annotated-trefoil}
 \end{figure}
 
 The knot group gives us another invariant of knots. Unfortunately
@@ -221,31 +422,44 @@ crossing satisfying the equation
 \[
   2x-y-z\equiv 0 \mod 3
 \]
-where the arcs of the crossing are labeled as in figure~\ref{fig:numcolor}
+where the arcs of the crossing are labeled as in figure~\ref{fig:numcolor}.
 
 \begin{figure}
-  
+  \includegraphics[scale=\ds]{numcolor}
   \caption{Colored Crossing}
   \label{fig:numcolor}
 \end{figure}
 
 In this form it is more apparent how we could extend 3-coloring
-to arbitrary $n$
+to arbitrary $n$ by simply replacing the modulus. Going back
+to our initial example of a knot, the figure eight knot, we have
+an example of a knot that is not 3-colorable but is 5-colorable
+as shown in figure~\ref{fig:figure-eight-c}.
 
-\section*{Acknowledgements}
+\begin{figure}
+  \includegraphics[scale=\ds]{figure-eight-c}
+  \caption{Figure-eight 5-coloring}
+  \label{fig:figure-eight-c}
+\end{figure}
+
+\section*{Acknowledgments}
 \begin{thebibliography}{99}
 
-\bibitem{jpsk} Kung, J.P.S., Critical problems, in {\em Matroid  
-Theory} (eds. J. E. Bonin, J.G. Oxley, and B. Servatius), {\em  
-Contemporary Mathematics} {\bf 197}, Amer. Math. Soc., Providence,  
-1996, pp. 1--127.
-
-\bibitem{hatcher}
-
-\bibitem{quickfox}
-
-\bibitem{medwid}
-
+\bibitem{hatcher}  Hatcher, Allen. Algebraic Topology.
+  Cambridge University Press, 2017. 
+  
+\bibitem{Livingston}  Livingston, Charles. Knot Theory.
+  Mathematical Association of America, 1996. 
+  
+\bibitem{medwid}  Medwid, Mark. “Generalized $P$-Colorings of Knots.”
+  Bowling Green University, 2014.
+  
+\bibitem{Poonen}  Poonen, Bjorn. “Undecidable Problems: a Sampler.”
+  Interpreting GÃ¶Del, pp. 211241., doi:10.1017/cbo9780511756306.015.
+  
+\bibitem{quickfox}  Fort, M. K., and Ralph H Fox.
+  “A Quick Trip Through Knot Theory.” Topology of 3-Manifolds and
+  Related Topics, Dover Publications, 2010, pp. 120166.
 \end{thebibliography}
 
 \end{document}
