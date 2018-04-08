@@ -6,3 +6,7 @@
 *.blg
 *\#*
 *flymake*
+*.nav
+*.out
+*.snm
+*.toc
