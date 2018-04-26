@@ -51,13 +51,6 @@ Baton Rouge, Louisiana}
 \end{abstract}
 
 \maketitle
-\textbf{TODO}:
-\begin{enumerate}
-\item Remove \textbf{TODO}
-\item Iron out Figure/image placement before final edition. Too early
-  now. Wait till revision is done.
-\item Passive voice/adverbs (Hemingway App)
-\end{enumerate}
 
 \section{Introduction}
 \label{introduction}
@@ -65,14 +58,10 @@ Baton Rouge, Louisiana}
 One common pattern we see in mathematics is a concern with how
 certain objects fit inside other objects. Knot theory studies this
 sort of problem. Given a circle $S^1$ what different ways can we embed
-it into $\bb{R}^3$ or $\bb{R}^3$  with an additional point at infinity ($S^3$)?
+it into $\bb{R}^3$ or $S^3$ ($\bb{R}^3$ with a point at $\infty$)?
 A typical drawing of a knot can be seen in Figure~\ref{fig:figure-eight}.
 
-\begin{figure}
-  \includegraphics[scale=\ds]{figure-eight}
-  \caption{Figure-eight knot}
-  \label{fig:figure-eight}
-\end{figure}
+
 
 Naturally, once we begin to consider knots, we are also led to consider
 how we might tell them apart or rather when they should be the same
@@ -82,8 +71,15 @@ different from that of trefoil seen in Figure~\ref{fig:trefoil}. In
 the next section, we will see the definition of a knot, how to define their
 equivalence in a sensible way, followed by a method to differentiate them
 called tricolorability. Afterwards, we will look at an alternative definition
-of tricolorability. Then we will introduce notions of how one may consider
+of tricolorability that utilizes the fundamental group.
+Then we will introduce notions of how one may consider
 coloring knots with more than three colors.
+
+\begin{figure}
+  \includegraphics[scale=\ds]{figure-eight}
+  \caption{Figure-eight knot}
+  \label{fig:figure-eight}
+\end{figure}
 
 \begin{figure}
   \includegraphics[scale=\ds]{figure-eight-t}
@@ -103,11 +99,11 @@ Livingston~\cite{Livingston}. To begin, we give the definition of a knot.
 
 Now there are two issues that we need to consider before moving forward.
 The first is our notion of equivalence. Unfortunately, a homeomorphism from
-one knot to another is too weak a notion of equivalence. Instead we will
-use the following: 
+one knot to another is too weak a notion of equivalence as all simple closed curves
+are homeomorphic to $S^1$. Instead we will use the following: 
 
 \begin{definition}
-  Two knots $K,J$ are \textit{ambient isotopic} if there is a homotopy on the ambient
+  Two knots $K$ and $J$ are \textit{ambient isotopic} if there is a homotopy on the ambient
   space $H:S^3\times [0,1]\rightarrow S^3$ if $H(x,0)$ is the identity and the
   image $H(K,1)=J$.
 \end{definition}
@@ -136,7 +132,8 @@ of the knots. All drawings of knots in this paper are examples of diagrams.
   \begin{itemize}
   \item At most two points are sent to the same location on the plane.
     These are called \textit{crossings}.
-  \item For any two crossings there are open disjoint neighborhoods of each.
+  \item Given any two crossings they each have an open neighborhood
+    that is disjoint from the other's neighborhood.
   \item All crossings must be either overcrossings or undercrossings.
   \end{itemize}
   Note that all figures in this paper are diagrams of knots.
@@ -144,14 +141,15 @@ of the knots. All drawings of knots in this paper are examples of diagrams.
 
 When we project to a plane there is a loss of information that occurs. This
 is why we must denote all crossings as either overcrossings or undercrossings.
-This allows one to recover the knot in its entirity from the diagram. Otherwise
-it would be ambiguous what knot is recovered. The segments that make up the diagram
+This allows one to recover the knot in its entirety from the diagram. Otherwise
+it would be ambiguous what knot is recovered since we would have to make a choice
+of over or under for each crossing. The segments that make up the diagram
 are called \textit{arcs}.
 
 There is one other unfortunate occurrence
 from moving to diagrams. It is that there are infinitely many diagrams
 for a given knot. Moreover actually telling whether two diagrams denote
-the same knot is extremely difficult although it is decidable and moreover
+the same knot is extremely difficult, though decidable, and moreover
 belongs to NP~\cite{Poonen}.
 
 It turns out that there are three ``moves'' along with planar isotopy
@@ -182,7 +180,7 @@ that it does not change under planar isotopy or the Reidmeister moves, then
 it will also act as an invariant on knots. This is precisely the method we
 will use with our initial definition of tricolorability.
 
-There are two knots that we will return to over and over again in this paper
+There are two knots that we will return to repeatedly
 as they are the simplest examples of knots for which tricolorability
 differentiates them. The simplest knot is the \textit{unknot} (see Figure~\ref{fig:unknot}), which
 is unique in that it has a diagram with no crossings whatsoever. The
@@ -228,7 +226,7 @@ Now we must show that tricoloring is in fact an invariant.
   for type-I, type-II, and type-III moves respectively.
 
   For type-I we have there only a single case as a type-I move acts only on
-  a single arc.
+  a single arc as seen in Figure~\ref{fig:t1-c}.
   \begin{figure}
     \includegraphics[scale=\ds]{t1-c}
     \caption{type-I}
@@ -236,7 +234,7 @@ Now we must show that tricoloring is in fact an invariant.
   \end{figure}
   
   For type-II, there are two cases either both strands have the same color
-  or they are different.
+  or they are different as seen in Figure~\ref{fig:t2-c}.
   \begin{figure}
     \includegraphics[scale=\ds]{t2-c}
     \caption{type-II}
@@ -245,7 +243,7 @@ Now we must show that tricoloring is in fact an invariant.
 
   Finally, for type-III moves there are several cases based on
   the colors of the strands entering. We will demonstrate
-  three such cases and the rest are similar.
+  three such cases, given in Figure~\ref{fig:t3-c}, and the rest are similar.
   \begin{figure}
     \includegraphics[scale=\ds]{t3-c}
     \caption{type-III}
@@ -399,8 +397,8 @@ $3$-coloring.
 What are the benefits of looking at $3$-coloring through
 the lens of Fox $3$-coloring? Unlike with coloring diagrams,
 it is immediate that Fox $3$-coloring is a knot invariant
-as the fundamental group is invariant under homotopy equivalence, and
-so ambient isotopy as well. Another benefit
+as the fundamental group is invariant under homotopy equivalence.
+So Fox $3$-coloring must be invariant under ambient isotopy as well. Another benefit
 is that it is more readily apparent how we can further
 extend Fox $3$-coloring than extending $3$-coloring. From
 the definition of $3$-coloring, there is some ambiguity that
@@ -456,7 +454,8 @@ as shown in Figure~\ref{fig:figure-eight-c}.
   \label{fig:figure-eight-c}
 \end{figure}
 
-\section*{Acknowledgments}
+\pagebreak
+
 \begin{thebibliography}{99}
 
 \bibitem{hatcher}  Hatcher, A., \textit{Algebraic Topology,}
